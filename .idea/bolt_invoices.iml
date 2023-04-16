@@ -144,40 +144,6 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
-      <library name="httparty (vbundled(0.21.0)) [path][gem]" type="rubylib">
-        <properties>
-          <option name="version" value="4" />
-        </properties>
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/gems/ruby/3.2.0/gems/httparty-0.21.0/bin" />
-          <root url="file://$MODULE_DIR$/gems/ruby/3.2.0/gems/httparty-0.21.0/lib" />
-          <root url="file://$MODULE_DIR$/gems/ruby/3.2.0/gems/httparty-0.21.0/docs" />
-          <root url="file://$MODULE_DIR$/gems/ruby/3.2.0/gems/httparty-0.21.0/script" />
-          <root url="file://$MODULE_DIR$/gems/ruby/3.2.0/gems/httparty-0.21.0/.github" />
-          <root url="file://$MODULE_DIR$/gems/ruby/3.2.0/gems/httparty-0.21.0/website" />
-          <root url="file://$MODULE_DIR$/gems/ruby/3.2.0/gems/httparty-0.21.0/examples" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/gems/ruby/3.2.0/gems/httparty-0.21.0/bin" />
-          <root url="file://$MODULE_DIR$/gems/ruby/3.2.0/gems/httparty-0.21.0/lib" />
-          <root url="file://$MODULE_DIR$/gems/ruby/3.2.0/gems/httparty-0.21.0/docs" />
-          <root url="file://$MODULE_DIR$/gems/ruby/3.2.0/gems/httparty-0.21.0/script" />
-          <root url="file://$MODULE_DIR$/gems/ruby/3.2.0/gems/httparty-0.21.0/.github" />
-          <root url="file://$MODULE_DIR$/gems/ruby/3.2.0/gems/httparty-0.21.0/website" />
-          <root url="file://$MODULE_DIR$/gems/ruby/3.2.0/gems/httparty-0.21.0/examples" />
-        </SOURCES>
-        <excluded>
-          <root url="file://$MODULE_DIR$/gems/ruby/3.2.0/gems/httparty-0.21.0/bin" />
-          <root url="file://$MODULE_DIR$/gems/ruby/3.2.0/gems/httparty-0.21.0/docs" />
-          <root url="file://$MODULE_DIR$/gems/ruby/3.2.0/gems/httparty-0.21.0/script" />
-          <root url="file://$MODULE_DIR$/gems/ruby/3.2.0/gems/httparty-0.21.0/.github" />
-          <root url="file://$MODULE_DIR$/gems/ruby/3.2.0/gems/httparty-0.21.0/website" />
-          <root url="file://$MODULE_DIR$/gems/ruby/3.2.0/gems/httparty-0.21.0/examples" />
-        </excluded>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
       <library name="httpclient (vbundled(2.8.3)) [path][gem]" type="rubylib">
         <properties>
           <option name="version" value="4" />
@@ -288,20 +254,6 @@
         <JAVADOC />
         <SOURCES>
           <root url="file://$MODULE_DIR$/gems/ruby/3.2.0/gems/multi_json-1.15.0/lib" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="multi_xml (vbundled(0.6.0)) [path][gem]" type="rubylib">
-        <properties>
-          <option name="version" value="4" />
-        </properties>
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/gems/ruby/3.2.0/gems/multi_xml-0.6.0/lib" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/gems/ruby/3.2.0/gems/multi_xml-0.6.0/lib" />
         </SOURCES>
       </library>
     </orderEntry>

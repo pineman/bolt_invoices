@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euxo pipefail
 ruby bolt.rb
 cd ..
 fd jpg -x convert {} {.}.pdf \; -x rm {}
