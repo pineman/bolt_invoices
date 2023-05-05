@@ -47,13 +47,15 @@ gmail.list_user_messages("me", max_results: 500, q: "Thanks for choosing Bolt").
   total_map["#{y}_#{m}"] += price.to_f
 end
 total_map.keys.sort.each do |k|
-  File.write("../#{k}/bolt_total_#{total_map[k]}.txt", "")
+  `rm -f ../#{k}/bolt_total_*`
+  File.write("../#{k}/bolt_total_#{total_map[k].round 2}.txt", "")
   next if k == "2023_03"
   y, m = k.split("_")
   py, pm = y.to_i, m.to_i - 1
   py, pm = py - 1, 12 if pm == 0
-  previous_left = File.read("../#{py}_#{"%02d" % pm}/left.txt").chomp
-  current_total = File.read("../#{k}/total.txt").chomp # Hand-written
-  current_left = previous_left - current_total + 200
+  previous_left = File.read("../#{py}_#{"%02d" % pm}/left.txt").chomp.to_f
+  exit 0 unless File.exist?("../#{k}/total.txt")
+  current_total = File.read("../#{k}/total.txt").chomp.to_f
+  current_left = (previous_left - current_total + 200).round 2
   File.write("../#{k}/left.txt", current_left.to_s)
 end
