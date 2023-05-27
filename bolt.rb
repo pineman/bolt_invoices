@@ -43,7 +43,7 @@ gmail.list_user_messages("me", max_results: 500, q: "Thanks for choosing Bolt").
   d, m = "%02d" % d, "%02d" % Date.strptime(m, "%B").month
   file_name = "../#{y}_#{m}/bolt_#{y}_#{m}_#{d}_#{price}.pdf"
   FileUtils.mkdir_p(File.dirname(file_name))
-  File.write(file_name, URI.open(body[INVOICE_LINK_REGEX]).read)
+  `curl -s '#{body[INVOICE_LINK_REGEX]}' > #{file_name}`
   total_map["#{y}_#{m}"] += price.to_f
 end
 total_map.keys.sort.each do |k|
