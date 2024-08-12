@@ -1,6 +1,5 @@
 #!/bin/bash
 set -euxo pipefail
-bundle
 echo "Place all jpg invoices, sum with bolt_total and write to total.txt"
 read
 ruby bolt.rb

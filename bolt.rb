@@ -1,4 +1,10 @@
-require "bundler/setup"
+require "bundler/inline"
+gemfile do
+  source "https://rubygems.org"
+  gem "google-apis-gmail_v1", "0.25.0"
+  gem "parallel", "1.25.1"
+  gem "typhoeus", "1.4.1"
+end
 
 require "google/apis/gmail_v1"
 require "googleauth"
@@ -35,17 +41,22 @@ INVOICE_LINK_REGEX = /https?:\/\/.*?invoice\.taxify\.eu.*?(?=\")/
 PRICE_REGEX = /\d+(?:\.\d{2})?€/
 DATE_REGEX = /\d{1,2}\s(?:January|February|March|April|May|June|July|August|September|October|November|December)\s\d{4}/
 total_map = Hash.new(0)
+pdfs = {}
 gmail.list_user_messages("me", max_results: 500, q: "Thanks for choosing Bolt after:2024/05/01 before:2024/05/31").messages.each do |msg|
   msg = gmail.get_user_message("me", msg.id)
   body = msg.payload.body.data.force_encoding("UTF-8")
   price = body[PRICE_REGEX].chomp("€")
   d, m, y = body[DATE_REGEX].split
   d, m = "%02d" % d, "%02d" % Date.strptime(m, "%B").month
-  file_name = "../#{y}_#{m}/bolt_#{y}_#{m}_#{d}_#{price}_#{msg.id}.pdf"
-  FileUtils.mkdir_p(File.dirname(file_name))
-  `curl -sL '#{body[INVOICE_LINK_REGEX]}' > #{file_name} &`
   total_map["#{y}_#{m}"] += price.to_f
+  file_name = "../#{y}_#{m}/bolt_#{y}_#{m}_#{d}_#{price}_#{msg.id}.pdf"
+  pdfs[file_name] = body[INVOICE_LINK_REGEX]
+  FileUtils.mkdir_p(File.dirname(file_name))
 end
+Parallel.map(pdfs, in_threads: pdfs.size) { |file_name, pdf_link|
+  resp = Typhoeus.get(pdf_link, followlocation: true)
+  File.write(file_name, resp.body)
+}
 total_map.keys.sort.each do |k|
   `rm -f ../#{k}/bolt_total_*`
   File.write("../#{k}/bolt_total_#{total_map[k].round 2}.txt", "")
